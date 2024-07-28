@@ -1,0 +1,355 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fafafa;
+    margin: 0;
+}
+
+#title-page {
+    text-align: center;
+}
+
+#title-page h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+#title-page button {
+    padding: 10px 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+
+
+
+#ingredients-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 20px;
+}
+
+#ingredients-panel h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#ingredients-list {
+    display: flex;
+    flex-direction: row;
+}
+
+.ingredient-column {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+#ingredients-list p {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.ingredient-icon {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    border: 1px solid #000;
+}
+
+
+
+
+.cell {
+    position: relative;
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+    display: inline-block;
+    border: 2px solid #fff; /* White border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background-image: url('images/ricenoodles.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.cell[data-type="1"] {
+    background-color: #ff6666;
+    background-image: url('images/ricenoodles.png');
+    background-size: cover; /* Adjusts the size of the image to cover the cell */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: center; /* Centers the image */
+}
+
+.cell[data-type="2"] {
+    background-color: #66ff66;
+    background-image: url('images/fish.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.cell[data-type="3"] {
+    background-color: #6666ff;
+    background-image: url('images/pork.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.cell[data-type="4"] {
+    background-color: #ff66ff;
+    background-image: url('images/vegetables.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.cell[data-type="5"] {
+    background-color: #ffcc66;
+    background-image: url('images/namtoksoup.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.cell[data-type="6"] {
+    background-color: #ccff66;
+    background-image: url('images/tomyumsoup.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.cell[data-type="7"] {
+    background-color: #66cccc;
+    background-image: url('images/clearsoup.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.cell[data-type="8"] {
+    background-color: #cc66cc;
+    background-image: url('images/yentafosoup.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.match {
+    border: 2px solid #fff;
+}
+
+#stage-clear {
+    margin-top: 20px;
+    font-size: 24px;
+    color: green;
+    font-weight: bold;
+}
+
+@keyframes borderFlash {
+    0% {
+        border-color: #000;
+    }
+    50% {
+        border-color: #fff;
+    }
+    100% {
+        border-color: #000;
+    }
+}
+
+#power-ups {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.power-up {
+    width: 60px; /* Set desired width */
+    height: 60px; /* Set desired height */
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #000;
+    border-radius: 50%; /* Make them circular */
+
+    background-color: #f5f5f5;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.power-up:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05);
+}
+
+.power-up:active {
+    background-color: #d0d0d0;
+    transform: scale(0.95);
+}
+
+.cell.selected {
+    border: 2px solid #f00; /* Red border for selected cell */
+}
+
+.cell.deselected {
+    border: 2px solid #ccc; /* Gray border for deselected cell */
+}
+
+
+.cell.match {
+    animation: borderFlash 0.5s ease;
+    border: 2px solid #0f0; /* Green border for matched cells */
+}
+
+#main-row
+
+/* style.css */
+
+/* General overlay styles */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 999; /* Ensures it sits behind the popup */
+}
+
+/* Popup styles */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 2px solid black;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* Ensures it sits on top of the overlay */
+}
+
+/* Ensure popups are hidden initially */
+#ingredient-popup,
+#popup {
+    display: none;
+}
+
+.popup button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#money-row {
+    margin-bottom: 20px;
+}
+
+#main-row {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+#timer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 400px;
+    background-color: #ccc;
+    margin-right: 20px;
+    border: 1px solid #000;
+}
+
+#timer {
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+    transition: height 1s linear;
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(8, 50px);
+    grid-template-rows: repeat(8, 50px);
+    gap: 2px;
+}
+
+#sell-options {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.sell-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px; /* Adjust the size as needed */
+    height: 150px; /* Adjust the size as needed */
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    text-align: center;
+    padding: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.sell-option img {
+    width: 80px; /* Adjust the size as needed */
+    height: 80px; /* Adjust the size as needed */
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border: none; /* Remove the border */
+
+}
+
+.sell-option span {
+    font-size: 14px;
+    color: #333;
+}
+
+.sell-option:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05);
+}
+
+.sell-option:active {
+    background-color: #d0d0d0;
+    transform: scale(0.95);
+}
+
+
+.color-reference {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    border: 1px solid #000;
+}
+
+

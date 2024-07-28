@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match 3 Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="title-page">
+        <h1>Noodle Match Café</h1>
+        <button id="start-button">Start Game</button>
+    </div>
+    <div id="game-container" style="display: none;">
+        <!-- First Row: Money -->
+        <div id="money-row">
+            <p>Money: <span id="money">1000</span> Target: 2000</p>
+        </div>
+        <!-- Second Row: Timer, Game Board, Ingredients and Power-ups -->
+        <div id="main-row">
+            <div id="timer-container">
+                <div id="timer"></div>
+            </div>
+            <div id="game-board"></div>
+            <div id="right-panel">
+                <div id="ingredients-panel">
+                    <h2>Ingredients</h2>
+                    <div id="ingredients-list">
+                        <div class="ingredient-column">
+                            <p>
+                                <img src="images/ricenoodles.png" alt="Rice Noodles" class="ingredient-icon" />
+                                Rice Noodles : <span id="red-matched">0</span>
+                            </p>
+                            <p>
+                                <img src="images/fish.png" alt="Fish" class="ingredient-icon"/>
+                                Fish : <span id="green-matched">0</span>
+                            </p>
+                            <p>
+                                <img src="images/pork.png" alt="Pork" class="ingredient-icon"/>
+                                Pork : <span id="blue-matched">0</span>
+                            </p>
+                            <p>
+                                <img src="images/vegetables.png" alt="Vegetables" class="ingredient-icon"/>
+                                Vegetables : <span id="purple-matched">0</span>
+                            </p>
+                        </div>
+                        <div class="ingredient-column">
+                            <p>
+                                <img src="images/namtoksoup.png" alt="Nam Tok Soup" class="ingredient-icon"/>
+                                Nam Tok Soup : <span id="yellow-matched">0</span>
+                            </p>
+                            <p>
+                                <img src="images/tomyumsoup.png" alt="Tom Yum Soup" class="ingredient-icon"/>
+                                Tom Yum Soup : <span id="lime-matched">0</span>
+                            </p>
+                            <p>
+                                <img src="images/clearsoup.png" alt="Clear Soup" class="ingredient-icon"/>
+                                Clear Soup : <span id="teal-matched">0</span>
+                            </p>
+                            <p>
+                                <img src="images/yentafosoup.png" alt="Yen Ta Fo Soup" class="ingredient-icon"/>
+                                Yen Ta Fo Soup : <span id="pink-matched">0</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!--
+                <div id="power-ups">
+                    <button id="power-up-1" class="power-up">
+                        1
+                    </button>
+                    <button id="power-up-2" class="power-up">
+                        2
+                    </button>
+                    <button id="power-up-3" class="power-up">
+                        3
+                    </button>
+                    <button id="power-up-4" class="power-up">
+                        4
+                    </button>
+                </div>
+                -->
+                <div id="sell-options">
+                    <button class="sell-option" onclick="sellNoodle('Tom Yum Noodles')">
+                        <img src="images/tomyumnoodles.png" alt="Tom Yum Noodles" class="color-reference"/>
+                        <span>Sell Tom Yum Noodles</span>
+                    </button>
+                    <button class="sell-option" onclick="sellNoodle('Yen Ta Fo Noodles')">
+                        <img src="images/yentafonoodles.png" alt="Yen Ta Fo Noodles" class="color-reference"/>
+                        <span>Sell Yen Ta Fo Noodles</span>
+                    </button>
+                    <button class="sell-option" onclick="sellNoodle('Clear Broth Noodles')">
+                        <img src="images/clearbrothnoodles.png" alt="Clear Broth Noodles" class="color-reference"/>
+                        <span>Sell Clear Broth Noodles</span>
+                    </button>
+                    <button class="sell-option" onclick="sellNoodle('Nam Tok Noodles')">
+                        <img src="images/namtoknoodles.png" alt="Nam Tok Noodles" class="color-reference"/>
+                        <span>Sell Nam Tok Noodles</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Third Row: Sell Panel -->
+        
+    </div>
+    <!-- Overlay -->
+    <div id="overlay" class="overlay" style="display: none;"></div>
+    
+    <!-- Ingredient Selection Popup -->
+    <div id="ingredient-popup" class="popup" style="display: none;">
+        <h2>Select Ingredient</h2>
+        <button onclick="selectIngredient('red')">Rice Noodles</button>
+        <button onclick="selectIngredient('green')">Fish</button>
+        <button onclick="selectIngredient('blue')">Pork</button>
+        <button onclick="selectIngredient('purple')">Vegetables</button>
+        <button onclick="selectIngredient('yellow')">Nam Tok Soup</button>
+        <button onclick="selectIngredient('lime')">Tom Yum Soup</button>
+        <button onclick="selectIngredient('teal')">Clear Soup</button>
+        <button onclick="selectIngredient('pink')">Yen Ta Fo Soup</button>
+        <button onclick="hideIngredientPopup()">Cancel</button>
+    </div>
+    
+    <!-- Game Over / Play Again Popup -->
+    <div id="popup" class="popup" style="display: none;">
+        <div id="popup-message"></div>
+        <button id="play-again-button">Play Again</button>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
